@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'knox',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

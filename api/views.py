@@ -4,12 +4,17 @@ from rest_framework.decorators import action
 from .models import Post,Comment,Profile,Like,Follow
 from rest_framework.response import Response
 from rest_framework import status,filters
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 from .serializers import commentSerilizers,postSerilizers,profileSerilizers,LikeSerilizers,followSerilizers
 from django.contrib.auth.models import User
 
 class postviewSets(viewsets.ModelViewSet):
     queryset=Post.objects.all()
     serializer_class=postSerilizers
+    permission_classes=[IsAuthenticated]
+    authentication_classes=[TokenAuthentication]
+
     @action(methods=['POST'],detail=True)
     def post_like(self, request, pk=None):
         if 'like' in request.data:
@@ -47,6 +52,9 @@ class postviewSets(viewsets.ModelViewSet):
 class commentviewSets(viewsets.ModelViewSet):
     queryset=Comment.objects.all()
     serializer_class=commentSerilizers
+    permission_classes=[IsAuthenticated]
+    authentication_classes=[TokenAuthentication]
+
     @action(methods=['POST'],detail=True)
     def comment_like(self, request, pk=None):
         if 'like' in request.data:
@@ -84,6 +92,9 @@ class commentviewSets(viewsets.ModelViewSet):
 class  profileviwsets(viewsets.ModelViewSet):
     queryset=Profile.objects.all()
     serializer_class=profileSerilizers
+    permission_classes=[IsAuthenticated]
+    authentication_classes=[TokenAuthentication]
+
     @action(methods=['POST'],detail=True)
     def profile_follow(self, request, pk=None):
         if 'follow' in request.data:
