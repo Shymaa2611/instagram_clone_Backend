@@ -1,0 +1,10 @@
+- user 
+    authentication
+        - register 
+        - login
+        - logout
+    operations
+        - add , delete , update post
+        - add , delete , update comment
+        - follow
+        - like
